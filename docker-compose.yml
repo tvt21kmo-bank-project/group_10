@@ -1,0 +1,25 @@
+version: '0.1'
+services:
+
+    db:
+        image: mysql:latest
+        container_name: bankdb
+        environment:
+            MYSQL_DATABASE: 'db'
+            MYSQL_ROOT_PASSWORD: 'example'
+            MYSQL_USER: 'db_user'
+            MYSQL_PASSWORD: 'db_user_pass'
+            MYSQL_AUTHENTICATION_PLUGIN: mysql_native_password
+        volumes:
+            - ./devdb:/var/lib/mysql
+        ports:
+          - "3306:3306"
+
+    restapi:
+        build: .
+        dockerfile: restapiDockerfile
+        container_name: restapi
+        volumes:
+            - ./:/app
+        ports:
+          - "8080:80"
