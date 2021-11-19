@@ -1,4 +1,4 @@
-FROM httpd:latest
-COPY ./restapi/ /usr/local/apache2/htdocs/public_html/
-WORKDIR /usr/local/apache2/htdocs/public_html/
-RUN npm install
+FROM node:latest
+WORKDIR /src
+COPY ./restapi/package.json /src
+RUN npm install --silent
