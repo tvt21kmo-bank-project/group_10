@@ -8,9 +8,9 @@ services:
             MYSQL_ROOT_PASSWORD: 'example'
             MYSQL_USER: 'db_user'
             MYSQL_PASSWORD: 'db_user_pass'
-            MYSQL_AUTHENTICATION_PLUGIN: mysql_native_password
         volumes:
             - ./devdb:/var/lib/mysql
+            - ./mysqldump:/docker-entrypoint-initdb.d
         ports:
             - "3306:3306"
 
@@ -24,6 +24,9 @@ services:
             CHOKIDAR_USEPOLLING: "true"
             MYSQL_URL: db
             MYSQL_PORT: 3306
+            MYSQL_DB: 'db'
+            MYSQL_USR: 'db_user'
+            MYSQL_PASSWD: 'db_user_pass'
             PORT: 80
         volumes:
             - ./restapi:/src/
