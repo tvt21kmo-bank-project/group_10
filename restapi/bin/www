@@ -130,11 +130,15 @@ function onListening() {
 
 
 const chokidar = require('chokidar');
+const sockets = [];
+
 chokidar.watch(path.join(__dirname, "../")).on('all', (event, at) => {
   if (event === 'change') {
     console.log('Restarting server...');
     restart();
   }
+  if (event === 'error') {
+    console.log(error);
+    restart();
+  }
 });
-
-const sockets = [];
