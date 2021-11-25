@@ -7,6 +7,7 @@ module.exports = () => {
     var indexRouter = require('./routes/index');
     var usersRouter = require('./routes/users');
     var loginRouter = require('./routes/login');
+    var tilitRouter = require('./routes/tilit');
 
     var app = express();
 
@@ -19,6 +20,7 @@ module.exports = () => {
     app.use('/', indexRouter);
     app.use('/users', usersRouter);
     app.use('/login', loginRouter);
+    app.use('/tilit', tilitRouter);
 
     return app;
 }
