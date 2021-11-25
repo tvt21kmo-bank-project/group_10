@@ -15,6 +15,7 @@ services:
             - "3306:3306"
 
     restapi:
+        restart: unless-stopped
         build:
             context: .
             dockerfile: restapiDockerfile
@@ -27,6 +28,7 @@ services:
             MYSQL_DB: 'db'
             MYSQL_USR: 'db_user'
             MYSQL_PASSWD: 'db_user_pass'
+            JWT_SECRET: '5@l@i5t@'
             PORT: 80
         volumes:
             - ./restapi:/src/

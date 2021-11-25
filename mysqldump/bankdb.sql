@@ -157,9 +157,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `db`;
-INSERT INTO `db`.`Kortti` (`idKortti`, `Korttinumero`, `PIN`, `salt`, `idAsiakas`) VALUES (1, '123456', NULL, NULL, 1);
-INSERT INTO `db`.`Kortti` (`idKortti`, `Korttinumero`, `PIN`, `salt`, `idAsiakas`) VALUES (2, '213456', NULL, NULL, 2);
-INSERT INTO `db`.`Kortti` (`idKortti`, `Korttinumero`, `PIN`, `salt`, `idAsiakas`) VALUES (3, '312456', NULL, NULL, 3);
+INSERT INTO `db`.`Kortti` (`idKortti`, `Korttinumero`, `PIN`, `salt`, `idAsiakas`) VALUES (1, '123456', '9210db67c76d76aac4573a40ecc76332afee92278f883e85d5513be2a7bda44a', '8Z00FCQE7H8XZSC', 1);
+INSERT INTO `db`.`Kortti` (`idKortti`, `Korttinumero`, `PIN`, `salt`, `idAsiakas`) VALUES (2, '213456', 'ce23d9cf2abebd32c68c087014f1a9787520c2cbd6733d0b6fd2e9d3691d20c8', 'PUF1LW1IWMEOS3X', 2);
+INSERT INTO `db`.`Kortti` (`idKortti`, `Korttinumero`, `PIN`, `salt`, `idAsiakas`) VALUES (3, '312456', 'e179c48c9f285b967f67f131bfd0a2c13c87488899ca6bc5293c0a83cc0929ea', '2Q7JNRL3DY78RWI', 3);
 
 COMMIT;
 
