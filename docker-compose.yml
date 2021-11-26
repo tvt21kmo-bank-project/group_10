@@ -1,0 +1,39 @@
+services:
+
+    db:
+        image: mysql:latest
+        container_name: bankdb
+        environment:
+            MYSQL_DATABASE: 'db'
+            MYSQL_ROOT_PASSWORD: 'example'
+            MYSQL_USER: 'db_user'
+            MYSQL_PASSWORD: 'db_user_pass'
+        volumes:
+            - ./devdb:/var/lib/mysql
+            - ./mysqldump:/docker-entrypoint-initdb.d
+        ports:
+            - "3306:3306"
+
+    restapi:
+        restart: unless-stopped
+        build:
+            context: .
+            dockerfile: restapiDockerfile
+        command: npm start
+        container_name: restapi
+        environment:
+            CHOKIDAR_USEPOLLING: "true"
+            MYSQL_URL: db
+            MYSQL_PORT: 3306
+            MYSQL_DB: 'db'
+            MYSQL_USR: 'db_user'
+            MYSQL_PASSWD: 'db_user_pass'
+            JWT_SECRET: '5@l@i5t@'
+            PORT: 80
+        volumes:
+            - ./restapi:/src/
+        ports:
+            - "8080:80"
+        depends_on:
+            - db
+        stdin_open: true

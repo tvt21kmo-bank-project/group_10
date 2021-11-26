@@ -1,0 +1,4 @@
+FROM node:latest
+WORKDIR /src
+COPY ./restapi/package.json /src
+RUN npm install --silent

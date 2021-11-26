@@ -1,0 +1,6 @@
+restapi/node_modules/
+restapi/.env
+bankautomat/build/
+bankautomat/*.user
+bankautomat/build-*
+devdb/*
