@@ -1,5 +1,5 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef LOGINWINDOW_H
+#define LOGINWINDOW_H
 
 #include <QMainWindow>
 #include <QtNetwork>
@@ -11,26 +11,26 @@
 
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui { class LoginWindow; }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
+class LoginWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    LoginWindow(QWidget *parent = nullptr);
+    ~LoginWindow();
 
 private slots:
     void on_btnLogin_clicked();
     void mySlot();
 
 private:
-    Ui::MainWindow *ui;
+    Ui::LoginWindow *ui;
     User *objectUser;
 
 signals:
        void mySignal();
 };
-#endif // MAINWINDOW_H
+#endif // LOGINWINDOW_H

@@ -1,15 +1,14 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include <QDebug>
+#include "loginwindow.h"
+#include "ui_loginwindow.h"
 
-MainWindow::MainWindow(QWidget *parent)
+LoginWindow::LoginWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    , ui(new Ui::LoginWindow)
 {
     ui->setupUi(this);
 }
 
-MainWindow::~MainWindow()
+LoginWindow::~LoginWindow()
 {
     delete ui;
     ui=nullptr;
@@ -17,12 +16,13 @@ MainWindow::~MainWindow()
     objectUser=nullptr;
 }
 
-void MainWindow::on_btnLogin_clicked()
+void LoginWindow::on_btnLogin_clicked()
 {
+    bool validLogin; //Set this true if user data is reached in database
     bool isInt;
     int usernameGiven=ui->lineEditUsername->text().toInt(&isInt);
     int passwordGiven=ui->lineEditPassword->text().toInt(&isInt);
-    if(!isInt) {
+    if(!isInt) { //If username and/or password contain anything else than numbers, 0 is returned
         ui->labelError->setText("Älä syötä kirjaimia tai erikoismerkkejä kenttiin!");
         qDebug() << passwordGiven;
         qDebug() << usernameGiven;
@@ -33,10 +33,15 @@ void MainWindow::on_btnLogin_clicked()
         ui->labelError->setText("");
         qDebug() << passwordGiven;
         qDebug() << usernameGiven;
+       if(validLogin) {
+
+       } else {
+           ui->labelError->setText("Sisäänkirjautuminen ei onnistunut, yritä uudelleen.");
+       }
     }
 }
 
-void MainWindow::mySlot()
+void LoginWindow::mySlot()
 {
 
 }
