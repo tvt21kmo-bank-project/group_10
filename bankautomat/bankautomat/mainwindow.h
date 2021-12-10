@@ -6,7 +6,7 @@
 #include <QNetworkAccessManager>
 #include <QJsonDocument>
 #include <QThread>
-#include <QDebug>
+
 #include <user.h>
 
 
