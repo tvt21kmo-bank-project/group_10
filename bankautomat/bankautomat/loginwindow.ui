@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Login Screen</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="btnLogin">
@@ -94,22 +94,6 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuBankautomat_Login">
-    <property name="title">
-     <string>Bankautomat - Login</string>
-    </property>
-   </widget>
-   <addaction name="menuBankautomat_Login"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

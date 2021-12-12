@@ -1,5 +1,6 @@
 #include "loginwindow.h"
 #include "ui_loginwindow.h"
+#include "bankwindow.h"
 
 LoginWindow::LoginWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -18,7 +19,7 @@ LoginWindow::~LoginWindow()
 
 void LoginWindow::on_btnLogin_clicked()
 {
-    bool validLogin; //Set this true if user data is reached in database
+    bool validLogin = true; //Set this true if user data is valid during the login
     bool isInt;
     int usernameGiven=ui->lineEditUsername->text().toInt(&isInt);
     int passwordGiven=ui->lineEditPassword->text().toInt(&isInt);
@@ -34,7 +35,8 @@ void LoginWindow::on_btnLogin_clicked()
         qDebug() << passwordGiven;
         qDebug() << usernameGiven;
        if(validLogin) {
-
+                BankWindow *bankWindow = new BankWindow;
+                bankWindow->show();
        } else {
            ui->labelError->setText("Sisäänkirjautuminen ei onnistunut, yritä uudelleen.");
        }

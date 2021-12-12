@@ -10,15 +10,18 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    bankwindow.cpp \
     loginwindow.cpp \
     main.cpp \
     user.cpp
 
 HEADERS += \
+    bankwindow.h \
     loginwindow.h \
     user.h
 
 FORMS += \
+    bankwindow.ui \
     loginwindow.ui
 
 # Default rules for deployment.
