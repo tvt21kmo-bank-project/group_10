@@ -2,6 +2,7 @@
 #define BANKWINDOW_H
 
 #include <QDialog>
+#include <QObject>
 
 namespace Ui {
 class BankWindow;
@@ -17,6 +18,9 @@ public:
 
 private:
     Ui::BankWindow *ui;
+
+signals:
+       void loginSignal();
 };
 
 #endif // BANKWINDOW_H

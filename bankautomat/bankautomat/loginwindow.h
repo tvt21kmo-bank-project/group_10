@@ -6,9 +6,10 @@
 #include <QNetworkAccessManager>
 #include <QJsonDocument>
 #include <QThread>
+#include <QObject>
+
 
 #include <user.h>
-
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class LoginWindow; }
@@ -24,13 +25,13 @@ public:
 
 private slots:
     void on_btnLogin_clicked();
-    void mySlot();
+    void loginSlot(QNetworkReply *reply);
 
 private:
     Ui::LoginWindow *ui;
     User *objectUser;
+    QNetworkAccessManager *loginManager;
+    QNetworkReply *reply;
 
-signals:
-       void mySignal();
 };
 #endif // LOGINWINDOW_H
