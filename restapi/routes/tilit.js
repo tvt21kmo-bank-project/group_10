@@ -10,12 +10,12 @@ router.get('/', function (req, res, next) {
             if (err) throw err;
             connection.promise().query('SELECT * from Kortti where Korttinumero=' + card_num).then(rows => {
                 console.log(rows[0][0].idKortti);
-                connection.promise().query('SELECT * from Tili where idKortti=' + rows[0][0].idKortti).then(rows => {
+                connection.promise().query('SELECT * from Tili where idKortti=' + rows[0][0].idKortti).then(rows2 => {
                     var tili_list = [];
-                    console.log(rows)
-                    for (var tili in rows[0]) {
-                        console.log(rows[0][tili].Tilinumero + ' tilinro');
-                        tili_list.push(rows[0][tili].Tilinumero);
+                    console.log(rows2)
+                    for (var tili in rows2[0]) {
+                        console.log(rows2[0][tili].Tilinumero + ' tilinro');
+                        tili_list.push(rows2[0][tili].Tilinumero);
                     }
                     res.send(tili_list);
                     return;

@@ -8,6 +8,12 @@ module.exports = () => {
     var usersRouter = require('./routes/users');
     var loginRouter = require('./routes/login');
     var tilitRouter = require('./routes/tilit');
+    var tiliRouter = require('./routes/tili');
+    var tilitapahtumatRouter = require('./routes/tili_tapahtuma');
+    var talletusRouter = require('./routes/talletus');
+    var nostoRouter = require('./routes/nosto');
+    var registerRouter = require('./routes/register');
+    var uusi_tiliRouter = require('./routes/uusi_tili');
 
     var app = express();
 
@@ -21,6 +27,12 @@ module.exports = () => {
     app.use('/users', usersRouter);
     app.use('/login', loginRouter);
     app.use('/tilit', tilitRouter);
+    app.use('/tili', tiliRouter);
+    app.use('/tilitapahtumat', tilitapahtumatRouter);
+    app.use('/talletus', talletusRouter);
+    app.use('/nosto', nostoRouter);
+    app.use('/register', registerRouter);
+    app.use('/uusitili', uusi_tiliRouter);
 
     return app;
 }
