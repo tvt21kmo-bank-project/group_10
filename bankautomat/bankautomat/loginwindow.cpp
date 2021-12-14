@@ -15,9 +15,9 @@ LoginWindow::~LoginWindow() {
 
 void LoginWindow::on_btnLogin_clicked() {
     QJsonObject json;
-    json.insert("username", ui -> lineEditUsername -> text());
-    json.insert("password", ui -> lineEditPassword -> text());
-    QString db_url;
+    json.insert("id", ui -> lineEditUsername -> text());
+    json.insert("passwd", ui -> lineEditPassword -> text());
+    QString db_url = "87.100.209.5";
     QString credentials;
     QNetworkRequest request((db_url));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
@@ -55,7 +55,7 @@ void LoginWindow::on_btnLogin_clicked() {
 
 void LoginWindow::loginSlot(QNetworkReply *reply) {
     QByteArray response_data = reply -> readAll();
-    qDebug() << response_data;
+    qDebug() << "Response data: " + response_data;
     if (response_data == "true") {
         qDebug() << "Valid login!";
         BankWindow * bankWindow = new BankWindow;
