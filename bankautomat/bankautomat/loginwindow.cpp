@@ -20,17 +20,13 @@ void LoginWindow::on_btnLogin_clicked() {
     QJsonDocument doc (json);
     QString strJson(doc.toJson(QJsonDocument::Compact));
     qDebug() << "Sent JSON: " + strJson;
-    QString db_url = "87.100.209.5";
-    QString credentials = "admin:1234";
-    QNetworkRequest request((db_url));
+    QString db_url = "http://87.100.209.5";
+    QNetworkRequest request(db_url+"/login");
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    QByteArray data = credentials.toLocal8Bit().toBase64();
-    QString headerData = "Basic " + data;
-    request.setRawHeader("Authorization", headerData.toLocal8Bit());
     loginManager = new QNetworkAccessManager(this);
-    connect(loginManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(loginSlot(QNetworkReply*)));
+    connect(loginManager, SIGNAL(finished(QNetworkReply*)),
+            this, SLOT(loginSlot(QNetworkReply*)));
     reply = loginManager -> post(request, QJsonDocument(json).toJson());
-    qDebug() << reply;
     /*
     bool validLogin = true; //Set this true if user data is valid during the login. SET TRUE FOR DEBUGGING PURPOSES ONLY
     bool isInt;
