@@ -15,7 +15,7 @@ router.post('/', function (req, res, next) {
                     connection.promise().query('SELECT * from Kortti where idKortti=' + rows[0][0].idKortti).then(rows3 => {
                         if (rows3[0][0].Korttinumero == card_num) {
                             if (rows[0][0].Kortin_tyyppi == "DEBIT") {
-                                if (rows[0][0].Saldo >= req.body.maara) {
+                                if (parseInt(rows[0][0].Saldo) >= parseInt(req.body.maara)) {
                                     connection.promise().query('UPDATE Tili SET Saldo=Saldo - ' + req.body.maara + ' WHERE idTili=' + rows[0][0].idTili).then(rows4 => {
                                         connection.promise().query(
                                             'INSERT INTO Tilitapahtumat (Paivays, Tapahtuma, Rahamaara, Tilitapahtuma, idTili, idKortti) VALUES ' +
@@ -29,7 +29,9 @@ router.post('/', function (req, res, next) {
                                 }
                             }
                             if (rows[0][0].Kortin_tyyppi == "CREDIT") {
-                                if (rows[0][0].Saldo + rows[0][0].Luottoraja >= req.body.maara) {
+                                console.log(parseInt(rows[0][0].Saldo) + parseInt(rows[0][0].Luottoraja))
+                                console.log(parseInt(req.body.maara))
+                                if (parseInt(rows[0][0].Saldo) + parseInt(rows[0][0].Luottoraja) >= parseInt(req.body.maara)) {
                                     connection.promise().query('UPDATE Tili SET Saldo=Saldo - ' + req.body.maara + ' WHERE idTili=' + rows[0][0].idTili).then(rows4 => {
                                         connection.promise().query(
                                             'INSERT INTO Tilitapahtumat (Paivays, Tapahtuma, Rahamaara, Tilitapahtuma, idTili, idKortti) VALUES ' +
