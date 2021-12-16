@@ -20,15 +20,23 @@ public:
     explicit BankWindow(QWidget *parent = nullptr);
     ~BankWindow();
 
+    const QString &getJwtToken() const;
+    void setJwtToken(const QString &newJwtToken);
+
+    const QString &getJwtFromMain() const;
+    void setJwtFromMain(const QString &newJwtFromMain);
+
 private:
     Ui::BankWindow *ui;
     QNetworkAccessManager *getManager;
     QNetworkReply *reply;
     QByteArray response_data;
+    QString jwtFromMain;
 
 signals:
        void loginSignal();
 private slots:
+       void accountSlot (QNetworkReply *reply);
        void on_btnWith20_clicked();
        void on_btnWith40_clicked();
        void on_btnWith50_clicked();
