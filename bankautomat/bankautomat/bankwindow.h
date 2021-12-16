@@ -17,15 +17,15 @@ class BankWindow : public QDialog
     Q_OBJECT
 
 public:
-    explicit BankWindow(QWidget *parent = nullptr);
+    explicit BankWindow(QString jwt, QWidget *parent = nullptr);
     ~BankWindow();
-
+/*
     const QString &getJwtToken() const;
     void setJwtToken(const QString &newJwtToken);
 
     const QString &getJwtFromMain() const;
     void setJwtFromMain(const QString &newJwtFromMain);
-
+*/
 private:
     Ui::BankWindow *ui;
     QNetworkAccessManager *getManager;

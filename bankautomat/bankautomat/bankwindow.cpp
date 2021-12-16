@@ -2,18 +2,17 @@
 #include "loginwindow.h"
 #include "ui_bankwindow.h"
 
-BankWindow::BankWindow( QWidget *parent) :
+BankWindow::BankWindow(QString jwtToken, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::BankWindow)
 {
-    QString jwtString = this->getJwtFromMain();
-    QByteArray jwt = this->getJwtFromMain().toLocal8Bit().toBase64();
+    QByteArray jwt = jwtToken.toLocal8Bit();
     ui->setupUi(this);
-    qDebug()<<"JWT String: " + jwtString;
+    qDebug()<<"JWT String: " + jwt;
     QString db_url = "http://87.100.209.5";
     QNetworkRequest request(db_url+"/tilit");
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    request.setRawHeader(QByteArray("Authorization"), jwt);
+    request.setRawHeader(QByteArray("jwt-token"), jwt);
     getManager = new QNetworkAccessManager(this);
     connect(getManager, SIGNAL(finished(QNetworkReply*)),
             this, SLOT(accountSlot(QNetworkReply*)));
@@ -26,16 +25,16 @@ BankWindow::~BankWindow()
     ui = nullptr;
 }
 
-const QString &BankWindow::getJwtFromMain() const
-{
-    return jwtFromMain;
-}
-
-void BankWindow::setJwtFromMain(const QString &newJwtFromMain)
+/*void BankWindow::setJwtFromMain(const QString &newJwtFromMain)
 {
     jwtFromMain = newJwtFromMain;
 }
 
+const QString &BankWindow::getJwtFromMain() const
+{
+    return jwtFromMain;
+}
+*/
 void BankWindow::accountSlot(QNetworkReply *reply)
 {
     response_data=reply->readAll();

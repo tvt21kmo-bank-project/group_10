@@ -40,8 +40,7 @@ void LoginWindow::loginSlot(QNetworkReply *reply) {
     qDebug() << "JWT Token: " + jwtToken;
     if (jwtToken.size() >= 6) {
         qDebug() << "Valid login!";
-        BankWindow * bankWindow = new BankWindow();
-        bankWindow->setJwtFromMain(jwtToken);
+        BankWindow * bankWindow = new BankWindow(jwtToken);
         bankWindow -> show();
         this -> close();
     } else {
