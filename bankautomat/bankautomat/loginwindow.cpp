@@ -14,9 +14,11 @@ LoginWindow::~LoginWindow() {
 }
 
 void LoginWindow::on_btnLogin_clicked() {
+    QString userId = ui->lineEditUsername->text();
+    QString userPasswd = ui->lineEditPassword->text();
     QJsonObject json;
-    json.insert("id", ui -> lineEditUsername -> text());
-    json.insert("passwd", ui -> lineEditPassword -> text());
+    json.insert("id", userId);
+    json.insert("passwd", userPasswd);
     QJsonDocument doc (json);
     QString strJson(doc.toJson(QJsonDocument::Compact));
     qDebug() << "Sent JSON: " + strJson;
@@ -55,8 +57,12 @@ void LoginWindow::on_btnLogin_clicked() {
 
 void LoginWindow::loginSlot(QNetworkReply *reply) {
     QByteArray response_data = reply -> readAll();
-    qDebug() << "Response data: " + response_data;
-    if (response_data == "true") {
+    QJsonDocument doc = QJsonDocument::fromJson(response_data);
+    QJsonObject obj = doc.object();
+    QJsonValue jsonVal = obj.value(QString("token"));
+    QString jwtToken = jsonVal.toString();
+    qDebug() << "Response data: " + response_data + " JWT Token: " + jwtToken;
+    if (jwtToken.size() >= 5) {
         qDebug() << "Valid login!";
         BankWindow * bankWindow = new BankWindow;
         bankWindow -> show();
